@@ -1,6 +1,6 @@
 {
-  "name": "deep-link-react-native",
-  "version": "1.0.17",
+  "name": "expo-deep-link",
+  "version": "1.0.18",
   "main": "./index.js",
   "author": "Chirag Codealchemy",
   "license": "MIT",
@@ -10,7 +10,7 @@
   },
   "type": "module",
   "bin": {
-    "deep-link": "./index.js"
+    "expo-deep-link": "./index.js"
   },
   "scripts": {
     "start": "node index.js"
