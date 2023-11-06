@@ -1,0 +1,33 @@
+{
+  "name": "deeplink",
+  "version": "1.0.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "author": "Chirag Codealchemy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chirag-codealchemy/deeplink.git"
+  },
+  "type": "module",
+  "bin": "cli.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "tsc && tsc --module commonjs --outDir dist/cjs"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "deeplink"
+  ],
+  "devDependencies": {
+    "firebase-tools": "^12",
+    "inquirer": "^9.2.11",
+    "prettier": "^2.8.8",
+    "typescript": "5.1.3"
+  }
+}
