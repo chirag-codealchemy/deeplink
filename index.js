@@ -10,33 +10,38 @@ export const createIndexPage = ({
   android_scheme,
   android_store_url,
   web_url,
+  firebase_folder_path,
 }) => {
-  return `<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <title>DeepLink</title>
-      <script>
-        if (navigator.userAgent.toLowerCase().indexOf("iphone") > -1) {
-          window.location.replace("${ios_scheme}:/" + window.location.pathname + window.location.search);
-          setTimeout(() => window.location.replace("${ios_store_url}"), 500);
-        }
-      </script>
-    </head>
-    <body style="margin: 0; padding: 0">
-      <p>Deep Link</p>
-      <script defer>
-        setTimeout(() => {
-          if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
-            window.location.replace("${android_scheme}:/" + window.location.pathname + window.location.search);
-            setTimeout(() => window.location.replace("${android_store_url}"), 500);
-          } else {
-            window.location.replace("${web_url}")
-          }
-        }, 0);
-      </script>
-    </body>
-  </html>
-  `;
+  if (firebase_folder_path) {
+    fs.writeFileSync(
+      `${firebase_folder_path}/index.html`,
+      `<!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <title>DeepLink</title>
+            <script>
+              if (navigator.userAgent.toLowerCase().indexOf("iphone") > -1) {
+                window.location.replace("${ios_scheme}:/" + window.location.pathname + window.location.search);
+                setTimeout(() => window.location.replace("${ios_store_url}"), 500);
+              }
+            </script>
+          </head>
+          <body style="margin: 0; padding: 0">
+            <p>Deep Link</p>
+            <script defer>
+              setTimeout(() => {
+                if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
+                  window.location.replace("${android_scheme}:/" + window.location.pathname + window.location.search);
+                  setTimeout(() => window.location.replace("${android_store_url}"), 500);
+                } else {
+                  window.location.replace("${web_url}")
+                }
+              }, 0);
+            </script>
+          </body>
+        </html>`
+    );
+  }
 };
 
 export async function init() {
@@ -74,15 +79,32 @@ export async function init() {
         .map((e) => `\t"${e}": "${config[e]}"`)
         .join(",\n")}\n}`
     );
-
-    fs.writeFileSync(
-      `${config.firebase_folder_path}/index.html`,
-      createIndexPage(config)
-    );
-    console.log("🚀 ~ This is your config :", config);
-    node.execSync("firebase deploy --only hosting").toString();
-    console.log("🚀 ~ Deep Link Deploy successfully ");
   } catch (error) {
     console.log("🚀 ~ file: index.js:80 ~ init ~ error:", error);
   }
 }
+
+const deploy = () => {
+  const config = fs.readFileSync("./deepLinkConfig.json");
+  createIndexPage(JSON.parse(config) || {});
+  node.execSync("firebase deploy --only hosting").toString();
+};
+
+const start = () => {
+  switch (process.argv[2]) {
+    case "init":
+      init();
+      deploy();
+      break;
+    case "update":
+      deploy();
+      break;
+    case "help":
+      return console.log(`
+        \n🚀--------------------🚀 \n\ninit: initialize project,\nupdate: update project \n\n🚀--------------------🚀\n`);
+    default:
+      break;
+  }
+};
+
+start();

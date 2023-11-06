@@ -11,10 +11,13 @@
     "url": "git+https://github.com/chirag-codealchemy/deeplink.git"
   },
   "type": "module",
-  "bin": "cli.js",
+  "bin": {
+    "deep-link-init": "./index.js",
+    "deep-link-update": "./update.js"
+  },
   "scripts": {
     "start": "node index.js",
-    "build": "tsc && tsc --module commonjs --outDir dist/cjs"
+    "update": "node update.js"
   },
   "files": [
     "dist",
