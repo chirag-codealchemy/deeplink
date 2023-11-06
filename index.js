@@ -1,5 +1,4 @@
-#! /usr/bin/env node
-
+#!/usr/bin/env node
 import fs from "fs";
 import inquirer from "inquirer";
 import node from "node:child_process";
