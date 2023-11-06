@@ -12,12 +12,10 @@
   },
   "type": "module",
   "bin": {
-    "deep-link-init": "./index.js",
-    "deep-link-update": "./update.js"
+    "deep-link": "node ./index.js"
   },
   "scripts": {
-    "start": "node index.js",
-    "update": "node update.js"
+    "start": "node index.js"
   },
   "files": [
     "dist",
