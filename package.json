@@ -1,6 +1,6 @@
 {
   "name": "expo-deep-link",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "main": "./index.js",
   "author": "Chirag Codealchemy",
   "license": "MIT",
