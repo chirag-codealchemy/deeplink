@@ -12,7 +12,7 @@
   },
   "type": "module",
   "bin": {
-    "deep-link": "node ./index.js"
+    "deep-link": "./index.js"
   },
   "scripts": {
     "start": "node index.js"

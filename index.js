@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 
 import fs from "fs";
 import inquirer from "inquirer";
@@ -99,11 +99,10 @@ const start = () => {
     case "update":
       deploy();
       break;
-    case "help":
-      return console.log(`
-        \n🚀--------------------🚀 \n\ninit: initialize project,\nupdate: update project \n\n🚀--------------------🚀\n`);
     default:
-      break;
+      return console.log(
+        `\n🚀--------------------🚀 \n\ninit: initialize project,\nupdate: update project \n\n🚀--------------------🚀\n`
+      );
   }
 };
 
