@@ -2,18 +2,22 @@
 import fs from "fs";
 import inquirer from "inquirer";
 import node from "node:child_process";
+import { URLSearchParams } from "url";
+import { networkInterfaces } from "os";
+import { createSpinner } from "nanospinner";
 
-export const createIndexPage = ({
+const createIndexPage = ({
+  web_url,
   ios_scheme,
   ios_store_url,
   android_scheme,
+  firebase_domain,
   android_store_url,
-  web_url,
-  firebase_folder_path,
+  firebase_hosting_path,
 }) => {
-  if (firebase_folder_path) {
+  if (firebase_hosting_path) {
     fs.writeFileSync(
-      `${firebase_folder_path}/index.html`,
+      `${firebase_hosting_path}/index.html`,
       `<!DOCTYPE html>
         <html lang="en">
           <head>
@@ -43,7 +47,7 @@ export const createIndexPage = ({
   }
 };
 
-export async function init() {
+async function init() {
   try {
     console.clear();
     console.log("Enter your project details...");
@@ -54,7 +58,12 @@ export async function init() {
       { name: "android_store_url", message: "Play Store URL? ", _default: "" },
       { name: "web_url", message: "Website URL? ", _default: "" },
       {
-        name: "firebase_folder_path",
+        name: "firebase_domain",
+        message: "Firebase domain? ",
+        _default: "<firebase_domain>",
+      },
+      {
+        name: "firebase_hosting_path",
         message: "Firebase hosting folder path? ",
         _default: "./public",
       },
@@ -69,7 +78,7 @@ export async function init() {
         type: "input",
         default: _default,
       });
-      config[name] = answer[name] || "";
+      config[name] = answer[name];
     }
 
     fs.writeFileSync(
@@ -83,26 +92,85 @@ export async function init() {
   }
 }
 
-const deploy = () => {
+const deploy = (spinner) => {
   const config = fs.readFileSync("./deepLinkConfig.json");
   createIndexPage(JSON.parse(config) || {});
   node.execSync("firebase deploy --only hosting").toString();
+  spinner.success({ text: `Deploy successfully` });
 };
 
 const start = () => {
-  switch (process.argv[2]) {
-    case "init":
-      init();
-      deploy();
-      break;
-    case "update":
-      deploy();
-      break;
-    default:
-      return console.log(
-        `\n🚀--------------------🚀 \n\ninit: initialize project,\nupdate: update project \n\n🚀--------------------🚀\n`
-      );
+  const spinner = createSpinner("Working...").start();
+  try {
+    switch (process.argv[2]) {
+      case "init":
+        init();
+        deploy(spinner);
+        break;
+      case "update":
+        deploy(spinner);
+        break;
+      default:
+        return spinner.success({
+          mark: "\t¯\\_(ツ)_/¯\n",
+          text: `\n🚀--------------------🚀 \n\ninit: initialize project (npx expo-deep-link init)\nupdate: update project (npx expo-deep-link update) \n\n🚀--------------------🚀\n`,
+        });
+    }
+  } catch (error) {
+    spinner.error({ text: `Error while deploy! \n ${error}` });
+    process.exit(1);
   }
 };
 
-start();
+// start();
+
+export const createLink = (obj) => {
+  try {
+    console.log("this is call");
+    // const path = path || "";
+    // const search = new URLSearchParams(data || {}).toString();
+    // const __DEV__ = process.env.NODE_ENV === "development";
+    // let config = fs.readFileSync("./deepLinkConfig.json");
+    // if (!config) {
+    //   return console.error("Initialize DeepLink before use!");
+    // } else {
+    //   config = JSON.parse(config);
+    // }
+
+    // const nets = networkInterfaces();
+    // const results = Object.create(null); // Or just '{}', an empty object
+    // for (const name of Object.keys(nets)) {
+    //   for (const net of nets[name]) {
+    //     const familyV4Value = typeof net.family === "string" ? "IPv4" : 4;
+    //     if (net.family === familyV4Value && !net.internal) {
+    //       if (!results[name]) {
+    //         results[name] = [];
+    //       }
+    //       results[name].push(net.address);
+    //     }
+    //   }
+    // }
+
+    const PORT =
+      Number(
+        JSON.parse(fs.readFileSync("../package.json"))
+          ?.dependencies?.nanospinner?.split(".")[0]
+          .replace(/[^~]/, "")
+      ) > 48
+        ? 8081
+        : 19000;
+
+    console.log("🚀 ~ file: index.js:152 ~ createLink ~ results:", PORT);
+
+    return `${
+      __DEV__
+        ? `exp://${results["en0"][0]}:${PORT}`
+        : `https://${config.firebase_domain}`
+    }${__DEV__ ? "/--/" : "/"}${path}?${search}`;
+  } catch (error) {
+    console.error("🚀 ~ expo-deep-link ~ error:", error);
+  }
+};
+createLink();
+
+const getLinkData = () => {};
