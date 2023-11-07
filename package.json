@@ -1,7 +1,7 @@
 {
   "name": "expo-deep-link",
-  "version": "1.0.20",
-  "main": "./index.js",
+  "version": "1.0.24",
+  "main": "./index.mjs",
   "author": "Chirag Codealchemy",
   "license": "MIT",
   "repository": {
@@ -10,10 +10,10 @@
   },
   "type": "module",
   "bin": {
-    "expo-deep-link": "./index.js"
+    "expo-deep-link": "./setup.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node setup.js"
   },
   "files": [
     "dist",

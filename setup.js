@@ -2,8 +2,6 @@
 import fs from "fs";
 import inquirer from "inquirer";
 import node from "node:child_process";
-import { URLSearchParams } from "url";
-import { networkInterfaces } from "os";
 import { createSpinner } from "nanospinner";
 
 const createIndexPage = ({
@@ -11,7 +9,6 @@ const createIndexPage = ({
   ios_scheme,
   ios_store_url,
   android_scheme,
-  firebase_domain,
   android_store_url,
   firebase_hosting_path,
 }) => {
@@ -122,55 +119,4 @@ const start = () => {
   }
 };
 
-// start();
-
-export const createLink = (obj) => {
-  try {
-    console.log("this is call");
-    // const path = path || "";
-    // const search = new URLSearchParams(data || {}).toString();
-    // const __DEV__ = process.env.NODE_ENV === "development";
-    // let config = fs.readFileSync("./deepLinkConfig.json");
-    // if (!config) {
-    //   return console.error("Initialize DeepLink before use!");
-    // } else {
-    //   config = JSON.parse(config);
-    // }
-
-    // const nets = networkInterfaces();
-    // const results = Object.create(null); // Or just '{}', an empty object
-    // for (const name of Object.keys(nets)) {
-    //   for (const net of nets[name]) {
-    //     const familyV4Value = typeof net.family === "string" ? "IPv4" : 4;
-    //     if (net.family === familyV4Value && !net.internal) {
-    //       if (!results[name]) {
-    //         results[name] = [];
-    //       }
-    //       results[name].push(net.address);
-    //     }
-    //   }
-    // }
-
-    const PORT =
-      Number(
-        JSON.parse(fs.readFileSync("../package.json"))
-          ?.dependencies?.nanospinner?.split(".")[0]
-          .replace(/[^~]/, "")
-      ) > 48
-        ? 8081
-        : 19000;
-
-    console.log("🚀 ~ file: index.js:152 ~ createLink ~ results:", PORT);
-
-    return `${
-      __DEV__
-        ? `exp://${results["en0"][0]}:${PORT}`
-        : `https://${config.firebase_domain}`
-    }${__DEV__ ? "/--/" : "/"}${path}?${search}`;
-  } catch (error) {
-    console.error("🚀 ~ expo-deep-link ~ error:", error);
-  }
-};
-createLink();
-
-const getLinkData = () => {};
+start();
