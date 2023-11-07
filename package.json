@@ -1,6 +1,6 @@
 {
   "name": "expo-deep-link",
-  "version": "1.0.24",
+  "version": "1.0.26",
   "main": "./index.mjs",
   "author": "Chirag Codealchemy",
   "license": "MIT",
@@ -16,19 +16,18 @@
     "start": "node setup.js"
   },
   "files": [
-    "dist",
-    "LICENSE",
+    "setup.js",
+    "index.mjs",
     "README.md"
   ],
   "keywords": [
     "deeplink"
   ],
   "devDependencies": {
-    "inquirer": "^9.2.11",
-    "prettier": "^2.8.8",
-    "typescript": "5.1.3"
+    "prettier": "^2.8.8"
   },
   "dependencies": {
+    "inquirer": "^9.2.11",
     "nanospinner": "^1.1.0",
     "shelljs": "^0.8.5"
   }
