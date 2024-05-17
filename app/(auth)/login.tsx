@@ -24,19 +24,18 @@ export default function Home() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="">
-        <View className="min-h-80 items-center justify-center ">
-          <Image source={AppImages.authImage} className="max-h-96 max-w-96 flex-1" />
-        </View>
-        <View className="my-10">
-          <View>
-            <View className="mx-auto w-10/12 sm:mx-auto sm:w-full sm:max-w-sm">
-              <Image
-                className="mx-auto w-auto"
-                source={{ uri: 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600' }}
-                alt="Your Company"
-              />
-              <Text className="  text-2xl font-medium leading-9 tracking-tight text-gray-900">
+      <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
+        <View className="h-dvh w-dvw max-w-screen-xl flex-auto justify-center px-10 md:flex-row">
+          <View className="flex-1 items-center justify-center">
+            <Image
+              source={AppImages.authImage}
+              resizeMode="contain"
+              className="!h-full sm:!w-full"
+            />
+          </View>
+          <View className="flex-1 md:self-center ">
+            <View className="w-full  sm:mx-auto sm:max-w-sm">
+              <Text className="  text-2xl font-medium  leading-9 tracking-tight text-gray-900">
                 Log In and Start Sharing
               </Text>
               <Text className="  text-sm font-medium  leading-9 tracking-tight text-gray-900">
@@ -47,9 +46,9 @@ export default function Home() {
                 <Text>Continue With Google</Text>
               </View>
               <View className="flex-row items-center justify-center gap-4">
-                <View className="h-1 flex-1  bg-gray-300" />
+                <View className="flex-1 border-t border-gray-200" />
                 <Text className="text-lg">Or</Text>
-                <View className="h-1 w-1 flex-1 bg-gray-300" />
+                <View className="flex-1 border-t border-gray-200" />
               </View>
               <View className="gap-3">
                 <View>
@@ -57,15 +56,23 @@ export default function Home() {
                     Email address
                   </Text>
                   <View className="mt-2">
-                    <TextInput onChangeText={(e) => setEmail(e)} className={styles.input} />
+                    <TextInput
+                      className={styles.input}
+                      placeholder="Enter email"
+                      onChangeText={(e) => setEmail(e)}
+                    />
                   </View>
                 </View>
-                <View>
+                <View className="w-full">
                   <Text className="block text-sm font-medium leading-6 text-gray-900">
                     Password
                   </Text>
                   <View className="mt-2">
-                    <TextInput onChangeText={(e) => setPassword(e)} className={styles.input} />
+                    <TextInput
+                      className={styles.input}
+                      placeholder="Enter password"
+                      onChangeText={(e) => setPassword(e)}
+                    />
                   </View>
                 </View>
                 <View className=" flex-row  items-center justify-end">
@@ -79,7 +86,7 @@ export default function Home() {
                 </View>
                 <TouchableOpacity
                   onPress={handleSubmit}
-                  className="flex w-full justify-center rounded-md bg-indigo-600 p-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  className="mb-10 mt-3  flex w-full justify-center rounded-md bg-indigo-600 p-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                   <Text className="text-center color-white"> Sign in</Text>
                 </TouchableOpacity>
               </View>

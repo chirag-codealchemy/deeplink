@@ -6,6 +6,8 @@ import { getAsyncItem } from '~/utils/asyncStorage';
 const SplashScreen = () => {
   const navigation = useNavigation();
   useEffect(() => {
+    console.log('splashScreen');
+
     getAuthState();
   }, []);
 
