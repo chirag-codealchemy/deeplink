@@ -1,3 +1,4 @@
+import { Link } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { Text, View } from 'react-native';
 
@@ -7,7 +8,8 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   return (
-    <Drawer drawerContent={() => <CustomDrawer />}>
+    <Drawer drawerContent={CustomDrawer}>
+      <Drawer.Screen name="Index" />
       <Drawer.Screen name="Home" />
       <Drawer.Screen name="Links" />
       <Drawer.Screen name="QRcodes" />
@@ -23,7 +25,9 @@ const CustomDrawer = () => {
         <Text className="color-white">Create new</Text>
       </View>
       {drawerItem.map((e) => (
-        <Text>{e}</Text>
+        <Link key={e} href={e}>
+          {e}
+        </Link>
       ))}
     </View>
   );

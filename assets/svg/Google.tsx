@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
-export const GoogleSvg = (props) => (
-  <Svg xmlns="http://www.w3.org/2000/svg" width={28} height={28} fill="none" {...props}>
+import Svg, { Path, SvgProps } from 'react-native-svg';
+
+export const GoogleSvg = (props: SvgProps) => (
+  <Svg width={28} height={28} fill="none" viewBox="0 0 28 28" {...props}>
     <Path
       fill="#FFC107"
       d="M25.44 11.715h-.94v-.048H14v4.667h6.593A6.997 6.997 0 0 1 7 14a7 7 0 0 1 7-7c1.784 0 3.408.673 4.644 1.773l3.3-3.3A11.613 11.613 0 0 0 14 2.333C7.557 2.333 2.333 7.558 2.333 14S7.557 25.667 14 25.667 25.667 20.443 25.667 14c0-.782-.08-1.546-.227-2.285Z"
