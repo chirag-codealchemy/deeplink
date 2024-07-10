@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid";
 import dbConnect from "@/utils/db";
 import { links } from "@/models/links";
-import { headers } from "next/headers";
 import { NextRequest, NextResponse, userAgent } from "next/server";
 
 // export const GET = async (req: NextRequest, { params }: { params: { id: string } }) => {
@@ -11,8 +10,6 @@ import { NextRequest, NextResponse, userAgent } from "next/server";
 //     await dbConnect();
 //     const data = await links.findById(params.id);
 //     if (!data) throw new Error("Link not found");
-//     const header = headers();
-//     header.set("");
 //     return NextResponse.redirect(data.link, { headers: {} });
 //   } catch (error) {
 //     console.log("🚀 ~ GET ~ error:", error);
@@ -27,11 +24,11 @@ export const GET = async (req: NextRequest, { params }: { params: { id: string }
     await dbConnect();
     const data = await links.findById(params.id);
     if (!data) throw new Error("Link not found");
-
+    data.image = "https://images.freeimages.com/image/previews/6e4/river-sunset-nature-png-5690483.png";
     const metaTags = `
       <meta property="og:title" content="${data.title}" />
       <meta property="og:description" content="${data.title}" />
-      <meta property="og:image" content="https://images.freeimages.com/image/previews/6e4/river-sunset-nature-png-5690483.png" />
+      <meta property="og:image" content="${data.image}" />
       <meta property="og:url" content="${data.link}" />
     `;
 
@@ -48,7 +45,7 @@ export const GET = async (req: NextRequest, { params }: { params: { id: string }
         <script>
           setTimeout(() => {
             window.location.href = "${data.link}";
-          }, 1000);
+          }, 100);
         </script>
       </body>
       </html>
