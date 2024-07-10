@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      listStyleImage: {
+        dot: 'url("/images/dot.png")',
+        check: 'url("/images/check.png")',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
