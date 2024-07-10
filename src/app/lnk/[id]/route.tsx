@@ -27,7 +27,7 @@ export const GET = async (req: NextRequest, { params }: { params: { id: string }
     data.image = "https://images.freeimages.com/image/previews/6e4/river-sunset-nature-png-5690483.png";
     const metaTags = `
       <meta property="og:title" content="${data.title}" />
-      <meta property="og:description" content="${data.title}" />
+      <meta property="og:description" content="${data.desc}" />
       <meta property="og:image" content="${data.image}" />
       <meta property="og:url" content="${data.link}" />
     `;
