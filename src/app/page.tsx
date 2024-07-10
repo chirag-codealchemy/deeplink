@@ -11,24 +11,24 @@ export default function Home() {
   const [modal, setModal] = useState(false);
 
   const createCall = () => {
-    Swal.fire({
-      icon: "success",
-      confirmButtonText: "copy",
-      title: "Link created successfully",
-      text: "",
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        navigator.clipboard.writeText("test");
-      }
-    });
-    // fetch("/create", { method: "POST", body: JSON.stringify({ link, title: "test", desc: "test desc" }) })
-    //   .then((r) => r.json())
-    //   .then((res) => {
-    //     console.log("🚀 ~ fetch ~ res:", res);
-    //   })
-    //   .catch((e) => {
-    //     console.log("🚀 ~ .then ~ e:", e);
-    //   });
+    fetch("/create", { method: "POST", body: JSON.stringify({ link, title: "test", desc: "test desc" }) })
+      .then((r) => r.json())
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          confirmButtonText: "copy",
+          title: "Link created successfully",
+          text: "https://srt-lnk.onrender.com/lnk" + res?._id,
+        }).then(({ isConfirmed }) => {
+          if (isConfirmed) {
+            navigator.clipboard.writeText("test");
+          }
+        });
+        console.log("🚀 ~ fetch ~ res:", res);
+      })
+      .catch((e) => {
+        console.log("🚀 ~ .then ~ e:", e);
+      });
   };
 
   return (
