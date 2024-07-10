@@ -8,27 +8,26 @@ import Swal from "sweetalert2";
 
 export default function Home() {
   const [link, setLink] = useState("");
-  const [modal, setModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const createCall = () => {
-    fetch("lnk/create", { method: "POST", body: JSON.stringify({ link, title: "test", desc: "test desc" }) })
-      .then((r) => r.json())
-      .then((res) => {
-        Swal.fire({
-          icon: "success",
-          confirmButtonText: "copy",
-          title: "Link created successfully",
-          text: "https://srt-lnk.onrender.com/lnk" + res?._id,
-        }).then(({ isConfirmed }) => {
-          if (isConfirmed) {
-            navigator.clipboard.writeText("test");
-          }
-        });
-        console.log("🚀 ~ fetch ~ res:", res);
-      })
-      .catch((e) => {
-        console.log("🚀 ~ .then ~ e:", e);
-      });
+    if (!loading) {
+      setLoading(true);
+      fetch("lnk/create", { method: "POST", body: JSON.stringify({ link, title: "test", desc: "test desc" }) })
+        .then((r) => r.json())
+        .then((res) => {
+          Swal.fire({
+            icon: "success",
+            confirmButtonText: "copy",
+            title: "Link created successfully",
+            text: "https://srt-lnk.onrender.com/lnk" + res?._id,
+          }).then(({ isConfirmed }) => {
+            isConfirmed && navigator.clipboard.writeText("https://srt-lnk.onrender.com/lnk" + res?._id);
+          });
+        })
+        .catch((e) => console.log("🚀 ~ .then ~ e:", e))
+        .finally(() => setLoading(false));
+    }
   };
 
   return (
@@ -81,8 +80,8 @@ export default function Home() {
             onChange={({ target }) => setLink(target.value)}
             className="my-1 w-full rounded-lg border border-[#979797] p-1"
           />
-          <div className="mt-5 w-auto rounded-md bg-[#2C82DF] px-4 py-2 text-white" onClick={createCall}>
-            Sign up and get your QR Code
+          <div className="mt-5 flex h-10 w-auto min-w-32 items-center justify-center rounded-md bg-[#2C82DF] text-white" onClick={createCall}>
+            {loading ? <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-white" /> : "Create Link"}
           </div>
           <div className="flex w-full flex-col items-center justify-center">
             <div className="mt-6 text-xl">No credit card required. Your free plan includes:</div>
