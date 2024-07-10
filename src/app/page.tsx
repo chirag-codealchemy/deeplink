@@ -18,11 +18,11 @@ export default function Home() {
         .then((res) => {
           Swal.fire({
             icon: "success",
+            title: res?.message,
             confirmButtonText: "copy",
-            title: "Link created successfully",
-            text: "https://srt-lnk.onrender.com/lnk" + res?._id,
+            text: "https://srt-lnk.onrender.com/lnk/" + res?._id,
           }).then(({ isConfirmed }) => {
-            isConfirmed && navigator.clipboard.writeText("https://srt-lnk.onrender.com/lnk" + res?._id);
+            isConfirmed && navigator.clipboard.writeText("https://srt-lnk.onrender.com/lnk/" + res?._id);
           });
         })
         .catch((e) => console.log("🚀 ~ .then ~ e:", e))
