@@ -30,9 +30,9 @@ export const GET = async (req: NextRequest, { params }: { params: { id: string }
 
     const metaTags = `
       <meta property="og:title" content="${data.title}" />
-      <meta property="og:description" content="${data.desc}" />
-      <meta property="og:image" content="Your Image URL Here" />
-      <meta property="og:url" content="https://images.freeimages.com/image/previews/6e4/river-sunset-nature-png-5690483.png" />
+      <meta property="og:description" content="${data.title}" />
+      <meta property="og:image" content="https://images.freeimages.com/image/previews/6e4/river-sunset-nature-png-5690483.png" />
+      <meta property="og:url" content="${data.link}" />
     `;
 
     const htmlResponse = `
