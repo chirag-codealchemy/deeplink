@@ -11,7 +11,7 @@ export default function Home() {
   const [modal, setModal] = useState(false);
 
   const createCall = () => {
-    fetch("/create", { method: "POST", body: JSON.stringify({ link, title: "test", desc: "test desc" }) })
+    fetch("lnk/create", { method: "POST", body: JSON.stringify({ link, title: "test", desc: "test desc" }) })
       .then((r) => r.json())
       .then((res) => {
         Swal.fire({
