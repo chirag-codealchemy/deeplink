@@ -10,10 +10,9 @@ const PrivacyPolicy = () => {
 
       <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">1. Introduction</h2>
       <p className="text-gray-600">
-        Welcome to srt-lnk ("we," "our," or "us"). We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your
-        information when you visit our website https://srt-lnk.onrender.com, including any other media form, media channel, mobile website, or mobile application related or
-        connected thereto (collectively, the “Site”). Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the
-        site.
+        Welcome to srt-lnk. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit
+        our website https://srt-lnk.onrender.com, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively,
+        the “Site”). Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
       </p>
 
       <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">2. Information We Collect</h2>
@@ -21,21 +20,14 @@ const PrivacyPolicy = () => {
 
       <h3 className="mb-2 mt-4 text-xl font-semibold text-gray-700">2.1. Personal Data</h3>
       <p className="text-gray-600">
-        Personally identifiable information, such as your name, shipping address, email address, and telephone number, and demographic information, such as your age, gender,
-        hometown, and interests, that you voluntarily give to us when you register with the Site or when you choose to participate in various activities related to the Site, such
-        as online chat and message boards.
+        Personally identifiable information, such as your name, email address, and telephone number, and demographic information, such as your age, gender, and interests, that you
+        voluntarily give to us when you register with the Site.
       </p>
 
       <h3 className="mb-2 mt-4 text-xl font-semibold text-gray-700">2.2. Derivative Data</h3>
       <p className="text-gray-600">
-        Information our servers automatically collect when you access the Site, such as your IP address, your browser type, your operating system, your access times, and the pages
-        you have viewed directly before and after accessing the Site.
-      </p>
-
-      <h3 className="mb-2 mt-4 text-xl font-semibold text-gray-700">2.3. Financial Data</h3>
-      <p className="text-gray-600">
-        Financial information, such as data related to your payment method (e.g., valid credit card number, card brand, expiration date) that we may collect when you purchase,
-        order, return, exchange, or request information about our services from the Site.
+        Information our servers automatically collect when you access the Site, your browser type, your operating system, your access times, and the pages you have viewed directly
+        before and after accessing the Site.
       </p>
 
       <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">3. Use of Your Information</h2>
@@ -45,12 +37,10 @@ const PrivacyPolicy = () => {
       </p>
       <ul className="ml-4 list-inside list-disc text-gray-600">
         <li>Create and manage your account.</li>
-        <li>Process your transactions and send you related information.</li>
         <li>Improve our website and services.</li>
         <li>Send you administrative information, such as updates to our terms, conditions, and policies.</li>
         <li>Request feedback and contact you about your use of the Site.</li>
         <li>Resolve disputes and troubleshoot problems.</li>
-        <li>Respond to product and customer service requests.</li>
       </ul>
 
       <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">4. Disclosure of Your Information</h2>
@@ -75,19 +65,13 @@ const PrivacyPolicy = () => {
         guaranteed against any interception or other type of misuse.
       </p>
 
-      <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">6. Policy for Children</h2>
-      <p className="text-gray-600">
-        We do not knowingly solicit information from or market to children under the age of 13. If we learn that we have collected personal information from a child under age 13
-        without verification of parental consent, we will delete that information as quickly as possible.
-      </p>
-
-      <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">7. Changes to This Privacy Policy</h2>
+      <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">6. Changes to This Privacy Policy</h2>
       <p className="text-gray-600">
         We may update this Privacy Policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal, or regulatory reasons. Any
         changes we make will be posted on this page, and, if the changes are significant, we will provide a more prominent notice by adding a notice on the homepage of our website.
       </p>
 
-      <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">8. Contact Us</h2>
+      <h2 className="mb-2 mt-6 text-2xl font-semibold text-gray-700">7. Contact Us</h2>
       <p className="text-gray-600">If you have questions or comments about this Privacy Policy, please contact us at:</p>
       <p className="text-gray-600">
         chiraghpatel03@gmail.com <br />

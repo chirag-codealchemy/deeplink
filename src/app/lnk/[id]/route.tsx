@@ -19,8 +19,8 @@ import { NextRequest, NextResponse, userAgent } from "next/server";
 
 export const GET = async (req: NextRequest, { params }: { params: { id: string } }) => {
   try {
-    const { ua } = userAgent(req);
-    console.log("🚀 ~ GET ~ ua:", ua);
+    const { ua, browser, isBot } = userAgent(req);
+    console.log("🚀 ~ GET ~ ua:", req.ip, { ua, browser, isBot });
     await dbConnect();
     const data = await links.findById(params.id);
     if (!data) throw new Error("Link not found");
