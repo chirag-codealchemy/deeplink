@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Swal from "sweetalert2";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   const [link, setLink] = useState("");
   const [loading, setLoading] = useState(false);
-
   const createCall = () => {
     if (!loading) {
       setLoading(true);
@@ -41,7 +41,16 @@ export default function Home() {
           ))}
         </div>
         <div className="flex flex-row">
-          <div className="mx-3 text-base font-normal">Log in</div>
+          <div
+            onClick={() => {
+              signIn("google", { redirect: true })
+                .then((res) => console.log("🚀 ~ signIn ~ res:", res))
+                .catch((e) => console.log("🚀 ~ signIn ~ e:", e));
+            }}
+            className="mx-3 cursor-pointer text-base font-normal"
+          >
+            Log in
+          </div>
           <div>Sign up Free</div>
         </div>
       </div>
