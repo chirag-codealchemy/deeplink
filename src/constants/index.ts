@@ -91,32 +91,17 @@ export const review = [
 ];
 
 export const faq = [
-  {
-    title: "What is a URL Shortener ?",
-  },
-  {
-    title: "Benefits of a short URL ?",
-  },
-  {
-    title: "What is a Custom URL Shortener ?",
-  },
-  {
-    title: "What is a QR Code ?",
-  },
-  {
-    title: "What can QR Code do ?",
-  },
-  {
-    title: "What is a Link-in-bio ?",
-  },
-  {
-    title: "What can QR Code do ?",
-  },
-  {
-    title: "What is a Link-in-bio ?",
-  },
+  { title: "What is a URL Shortener ?" },
+  { title: "Benefits of a short URL ?" },
+  { title: "What is a Custom URL Shortener ?" },
+  { title: "What is a QR Code ?" },
+  { title: "What can QR Code do ?" },
+  { title: "What is a Link-in-bio ?" },
+  { title: "What can QR Code do ?" },
+  { title: "What is a Link-in-bio ?" },
 ];
 
+// <meta property="og:image" content="${data?.image}" />
 export const botMeta = (data: { title: string; desc?: string; image?: string; link?: string }) => `
 <!doctype html>
 <html lang="en">
@@ -125,12 +110,12 @@ export const botMeta = (data: { title: string; desc?: string; image?: string; li
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- open graph meta -->
     <meta property="og:url" content="${data.link}" />
-    <meta property="og:image" content="${data?.image}" />
+    <meta property="og:image" content="${"https://play-lh.googleusercontent.com/0XXTsNgg5RXGqoDMxwDHpG7A_UlImfGs0CK3jcnm5isWkO4CEz5DP17Pkz46JCihyN4"}" />
     <meta property="og:title" content="${data?.title}" />
     <meta property="og:description" content="${data?.desc}" />
     <!-- twitter meta -->
     <meta property="twitter:url" content="${data.link}" />
-    <meta property="twitter:image" content="${data?.image}" />
+    <meta property="twitter:image" content="${"https://play-lh.googleusercontent.com/0XXTsNgg5RXGqoDMxwDHpG7A_UlImfGs0CK3jcnm5isWkO4CEz5DP17Pkz46JCihyN4"}" />
     <meta property="twitter:title" content="${data?.title}" />
     <meta property="twitter:description" content="${data?.desc}" />
     <script>
