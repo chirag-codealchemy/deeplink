@@ -31,7 +31,7 @@ export function Header() {
         </div>
       ) : (
         <button
-          className="btn btn-square btn-ghost"
+          className="btn btn-square btn-ghost w-fit px-2"
           onClick={() => {
             signIn("google", { redirect: true })
               .then((res) => console.log("🚀 ~ signIn ~ res:", res))
