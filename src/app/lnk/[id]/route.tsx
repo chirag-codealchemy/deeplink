@@ -9,7 +9,7 @@ export const GET = async (req: NextRequest, { params }: { params: { id: string }
     await dbConnect();
     const data = await links.findById(params.id);
     if (!data) throw new Error("Link not found");
-    return isBot ? new NextResponse(botMeta(data)) : NextResponse.redirect(data.link);
+    return isBot ? new NextResponse(botMeta(data), { headers: { "Content-Type": "text/html" } }) : NextResponse.redirect(data.link);
   } catch (error) {
     console.log("🚀 ~ GET ~ error:", error);
     return NextResponse.redirect(new URL("/expire", req.url));
