@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import CreateLinkModal from "@/components/CreateLinkModal";
 
 function Page() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     getData();
