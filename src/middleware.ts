@@ -2,17 +2,14 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(req: NextRequest) {
   try {
     const userData = await getToken({ req });
-    console.log("🚀 ~ middleware ~ data 2 ------>", userData);
-  } catch (error) {
-    console.log("🚀 ~ middleware ~ error:", error);
-  } finally {
+    if (!userData) throw new Error("Unauthorized access");
     return NextResponse.next();
+  } catch (error) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = { matcher: ["/dashboard"] };

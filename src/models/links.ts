@@ -7,6 +7,7 @@ const linkSchema = new Schema(
     link: String,
     desc: String,
     title: String,
+    user_id: { type: String, ref: "users", require: true },
   },
   { timestamps: true },
 );

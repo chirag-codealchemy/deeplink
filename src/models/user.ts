@@ -11,4 +11,4 @@ const userSchema = new Schema(
   { timestamps: true },
 );
 
-export const users = createModals("links", userSchema);
+export const users = createModals("users", userSchema);
