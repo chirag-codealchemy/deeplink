@@ -101,7 +101,6 @@ export const faq = [
   { title: "What is a Link-in-bio ?" },
 ];
 
-// <meta property="og:image" content="${data?.image}" />
 export const botMeta = (data: { title?: string; desc?: string; image?: string; link?: string }) => `
 <!doctype html>
 <html lang="en">
