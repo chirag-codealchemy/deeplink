@@ -33,7 +33,7 @@ function Page() {
             <input type="text" className="w-auto" placeholder="Search" />
             <IoSearchSharp />
           </label>
-          <CreateLinkModal data={data} />
+          <CreateLinkModal getData={getData} />
         </div>
       </div>
       {!data.length ? (
