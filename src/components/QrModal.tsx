@@ -34,8 +34,12 @@ export const QrModal = ({ _id }: { [key: string]: string }) => {
   return (
     <div>
       <div className="group relative flex items-center justify-center">
-        <QRCode size={48} value={getStaticLink(_id)} viewBox={`0 0 48 48`} onClick={() => QrModalRef.current?.showModal()} />
-        {!showEdit && <FiEdit size={12} className="absolute hidden h-full w-full items-center justify-center bg-white bg-opacity-80 p-3 group-hover:flex" />}
+        <QRCode size={48} value={getStaticLink(_id)} viewBox={`0 0 48 48`} />
+        <FiEdit
+          size={12}
+          onClick={() => QrModalRef.current?.showModal()}
+          className="absolute hidden h-full w-full items-center justify-center bg-white bg-opacity-80 p-3 group-hover:flex"
+        />
       </div>
       <dialog ref={QrModalRef} id={_id} className="modal">
         <div className="modal-box w-fit max-w-3xl">
