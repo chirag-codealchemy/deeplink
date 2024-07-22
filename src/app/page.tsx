@@ -1,89 +1,16 @@
-"use client";
 import Link from "next/link";
-import Swal from "sweetalert2";
 import Image from "next/image";
-import { useState } from "react";
 import { Header } from "@/components/Header";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { faq, hero, hero1, hero2, review } from "@/constants";
+import { faq, hero1, hero2, review } from "@/constants";
+import DashboardSlider from "@/components/DashboardSlider";
 
 export default function Home() {
-  const [link, setLink] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const createCall = () => {
-    if (!loading) {
-      setLoading(true);
-      fetch("lnk/create", { method: "POST", body: JSON.stringify({ link, title: "test", desc: "test desc" }) })
-        .then((r) => r.json())
-        .then((res) => {
-          Swal.fire({
-            icon: "success",
-            title: res?.message,
-            confirmButtonText: "copy",
-            text: "https://srt-lnk.onrender.com/lnk/" + res?._id,
-          }).then(({ isConfirmed }) => {
-            isConfirmed && navigator.clipboard.writeText("https://srt-lnk.onrender.com/lnk/" + res?._id);
-          });
-        })
-        .catch((e) => console.log("🚀 ~ .then ~ e:", e))
-        .finally(() => setLoading(false));
-    }
-  };
-
   return (
     <div className="flex flex-col items-center">
       <Header />
       <div className="flex w-11/12 max-w-screen-xl flex-col gap-4 md:gap-10">
-        <div className="w-full">
-          <Swiper spaceBetween={50} autoplay slidesPerView={1} pagination={{ clickable: true }}>
-            {hero.map((e) => (
-              <SwiperSlide key={e.title}>
-                <div className="flex items-center">
-                  <div className="w-6/12">
-                    <div className="text-5xl font-medium">{e.title}</div>
-                    <div className="my-6 text-xl text-[#979797]">{e.desc}</div>
-                    <Link href={"/"} className="flex h-12 w-60 items-center justify-center rounded-md bg-[#2C82DF] text-xl text-white">
-                      Get Started for Free
-                    </Link>
-                  </div>
-                  <Image src={e.image} alt="a" width={350} height={350} className="w-6/12" />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-
+        <DashboardSlider />
         <div className="mx-auto mb-6 text-center text-4xl font-semibold">Reimagine how you reach, share and engage with your audience</div>
-
-        <div className="mx-auto mb-16 flex w-full max-w-screen-lg flex-col items-start rounded-lg bg-[#F9F9F9] p-5">
-          <div className="flex items-center gap-2 text-2xl font-medium">
-            <Image alt="qr" width={20} height={20} className="h-8 w-8" src={"/images/qr.png"} />
-            Create a QR Code
-          </div>
-          <div className="mt-4 text-xl">Enter your QR Code destination</div>
-          <input
-            type="text"
-            placeholder="Example:http://super-long-link.com"
-            onChange={({ target }) => setLink(target.value)}
-            className="my-1 w-full rounded-lg border border-[#979797] p-1"
-          />
-          <div className="mt-5 flex h-10 w-auto min-w-32 items-center justify-center rounded-md bg-[#2C82DF] text-white" onClick={createCall}>
-            {loading ? <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-white" /> : "Create Link"}
-          </div>
-          <div className="flex w-full flex-col items-center justify-center">
-            <div className="mt-6 text-xl">No credit card required. Your free plan includes:</div>
-            <div className="flex">
-              {["Short Links", "QR Codes", "Links-in-bio"].map((e) => (
-                <div key={e} className="m-2 flex items-center">
-                  <Image width={20} height={20} alt="check" className="h-5 w-5" src={"/images/check.png"} />
-                  {e}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {hero1.map((item, index) => (
           <div key={item.title} className={"flex flex-col items-center gap-10 " + (index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse")}>
             <Image alt="img" width={350} height={350} src={item.image} className="aspect-square w-6/12" />
@@ -183,14 +110,12 @@ export default function Home() {
           <div className="text-center text-4xl font-semibold">Frequently Asked Questions</div>
           <div className="mt-3 text-center text-[#979797]">These FAQs should help provide a better understanding of URL shorteners and their usage.</div>
           <div className="my-8 grid w-full grid-cols-1 gap-4 md:grid-cols-2">
-            {faq.map((e) => {
-              return (
-                <div key={e.title} className="mx-auto flex w-10/12 justify-between">
-                  {e.title}
-                  <Image src={"/images/down.png"} alt="down" width={28} height={28} />
-                </div>
-              );
-            })}
+            {faq.map((e) => (
+              <div key={e.title} className="mx-auto flex w-10/12 justify-between">
+                {e.title}
+                <Image src={"/images/down.png"} alt="down" width={28} height={28} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

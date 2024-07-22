@@ -33,7 +33,7 @@ export function Header() {
         <button
           className="btn btn-square btn-ghost w-fit px-2"
           onClick={() => {
-            signIn("google", { redirect: true })
+            signIn("google")
               .then((res) => console.log("🚀 ~ signIn ~ res:", res))
               .catch((e) => console.log("🚀 ~ signIn ~ e:", e));
           }}

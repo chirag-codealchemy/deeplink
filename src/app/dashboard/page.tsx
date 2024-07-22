@@ -16,7 +16,7 @@ function Page() {
   }, []);
 
   const getData = () => {
-    fetch(process.env.NEXTAUTH_URL + "api/get-links")
+    fetch("/api/get-links")
       .then((r) => r.json())
       .then(setData);
   };
